@@ -84,7 +84,7 @@ avg_scores = df[
      "Quizzes_Avg", "Projects_Score"]].mean().round(2)
 
 #Sidebar filters and login
-st.sidebar.title("🔐 Login")
+st.sidebar.title("🔐 Logi")
 role = st.sidebar.selectbox("Select Role", ["Teacher", "Student"])
 student_id = None
 
