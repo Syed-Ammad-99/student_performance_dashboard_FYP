@@ -84,7 +84,7 @@ avg_scores = df[
      "Quizzes_Avg", "Projects_Score"]].mean().round(2)
 
 #Sidebar filters and login
-st.sidebar.title("🔐 Logi")
+st.sidebar.title("🔐 Login")
 role = st.sidebar.selectbox("Select Role", ["Teacher", "Student"])
 student_id = None
 
@@ -119,7 +119,7 @@ if login_btn and role == "Teacher":
         # Average performance score
         col3.markdown(
             f"<div style='text-align:center; font-weight:bold'>📈 Avg Score</div>"
-            f"<div style='text-align:center; font-size:28px; font-weight:700'>{df['Total_Score'].mean():.2f}</div>",
+            f"<div style='text-align:center; font-size:28px; font-weight:700'>{df['avg_scores'].mean():.2f}</div>",
             unsafe_allow_html=True
         )
         # "At-Risk Students"
@@ -206,7 +206,7 @@ elif login_btn and role == "Student":
         )
 
     col2.markdown(
-            f"<div style='text-align:center; font-weight:bold'>📈 Avg Score</div>"
+            f"<div style='text-align:center; font-weight:bold'>📈 Total Score</div>"
             f"<div style='text-align:center; font-size:28px; font-weight:700'>{student['Total_Score']:.2f}</div>",
             unsafe_allow_html=True
         )
