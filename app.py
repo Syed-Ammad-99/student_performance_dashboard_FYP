@@ -119,7 +119,7 @@ if login_btn and role == "Teacher":
         # Average performance score
         col3.markdown(
             f"<div style='text-align:center; font-weight:bold'>📈 Avg Score</div>"
-            f"<div style='text-align:center; font-size:28px; font-weight:700'>{df['avg_scores'].mean():.2f}</div>",
+            f"<div style='text-align:center; font-size:28px; font-weight:700'>{df['Total_Score'].mean():.2f}</div>",
             unsafe_allow_html=True
         )
         # "At-Risk Students"
