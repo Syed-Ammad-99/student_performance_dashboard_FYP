@@ -83,6 +83,20 @@ avg_scores = df[
     ["Midterm_Score", "Final_Score", "Assignments_Avg",
      "Quizzes_Avg", "Projects_Score"]].mean().round(2)
 
+# Recommendation Function
+def get_recommendations(student):
+    """Generates personalized recommendations based on student data."""
+    recs = []
+    if student["Attendance (%)"] < 70:
+        recs.append("Improve attendance to avoid falling behind.")
+    if student["Assignments_Avg"] < 60:
+        recs.append("Focus on improving assignment scores through more practice.")
+    if student["Final_Score"] < 60:
+        recs.append("Review final exam topics and consider seeking extra help.")
+    if not recs:
+        recs.append("Keep up the great work and maintain your current study habits.")
+    return recs
+
 #Sidebar filters and login
 st.sidebar.title("🔐 Login")
 role = st.sidebar.selectbox("Select Role", ["Teacher", "Student"])
@@ -279,14 +293,18 @@ elif login_btn and role == "Student":
     st.plotly_chart(fig, use_container_width=True)
 
     st.divider()
-    # Attendance Risk Message
+    # Academic Risk Status and Recommendations
     with st.container():
-        st.markdown("### 🧠 Academic Risk Status")
+        st.markdown("### 🧠 Academic Risk Status & Recommendations")
 
     if student["Risk_Label"] == "At Risk":
-        st.error("⚠ **AT RISK** – Immediate improvement recommended")
+        st.error("⚠ **AT RISK** – Immediate improvement recommended.")
+        recommendations = get_recommendations(student)
+        for rec in recommendations:
+            st.warning(f"👉 {rec}")
     else:
-        st.success("✅ **SAFE** – Keep up the good performance")
+        st.success("✅ **SAFE** – Keep up the good performance!")
+
 
 #Default Screen
 else:
