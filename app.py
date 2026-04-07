@@ -8,19 +8,6 @@ import plotly.express as px
 # --- MOCK USER CREDENTIALS ---
 # In a real app, use a database or st.secrets
 TEACHER_CREDS = {"teacher_user": "teacher_pass"}
-# For students, the username is their Student_ID and each has a mock password
-STUDENT_CREDS = {
-    "S101": "pass101",
-    "S102": "pass102",
-    "S103": "pass103",
-    "S104": "pass104",
-    "S105": "pass105",
-    "S106": "pass106",
-    "S107": "pass107",
-    "S108": "pass108",
-    "S109": "pass109",
-    "S110": "pass110",
-}
 
 
 # --- AUTHENTICATION LOGIC ---
@@ -28,6 +15,8 @@ def authenticate(role, username, password):
     if role == "Teacher":
         return username in TEACHER_CREDS and TEACHER_CREDS[username] == password
     if role == "Student":
+        # Each student's password is "pass" + the numeric part of their Student_ID
+        # e.g., S1000 → pass1000
         return username in STUDENT_CREDS and STUDENT_CREDS[username] == password
     return False
 
@@ -61,6 +50,10 @@ def load_data():
     df = pd.read_excel("CSV3 Students Performance Dataset.xlsx")
     return df
 df = load_data()
+
+# Generate student credentials dynamically from dataset
+# Password pattern: "pass" + numeric part of Student_ID (e.g. S1000 → pass1000)
+STUDENT_CREDS = {sid: "pass" + sid[1:] for sid in df["Student_ID"].unique()}
 
 
 # ML MODEL (Logistic Regression)
