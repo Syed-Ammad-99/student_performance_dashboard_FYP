@@ -255,7 +255,9 @@ elif login_btn and role == "Student":
         perf_df,
         x="Score Type",
         y="Score",
-        text="Score"
+        text="Score",
+        color="Score Type",  # Assign colors based on the score type
+        color_discrete_sequence=px.colors.qualitative.Set2  # Use a nice color set
     )
     
     fig.update_traces(textposition="inside", textangle=0)
