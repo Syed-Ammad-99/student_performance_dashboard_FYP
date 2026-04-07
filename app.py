@@ -157,7 +157,7 @@ if login_btn and role == "Teacher":
         y="Average Score",
         text="Average Score",
         color="Average Score",
-        color_continuous_scale="Viridis"
+        color_continuous_scale=[[0, "#8698bc"], [1, "#1f3a6b"]] # Custom blue gradient
     )
 
     fig.update_layout(height=400)
