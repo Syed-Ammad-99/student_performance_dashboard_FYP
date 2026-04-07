@@ -141,7 +141,7 @@ if not st.session_state.logged_in:
             st.session_state.logged_in = True
             st.session_state.role = role
             st.session_state.user_id = username
-            st.experimental_rerun()
+            st.rerun()
         else:
             st.sidebar.error("Invalid username or password")
 
@@ -152,7 +152,7 @@ else:
         st.session_state.logged_in = False
         st.session_state.role = None
         st.session_state.user_id = None
-        st.experimental_rerun()
+        st.rerun()
 
 # --- MAIN APP ---
 if st.session_state.logged_in:
