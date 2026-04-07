@@ -157,7 +157,7 @@ if login_btn and role == "Teacher":
         y="Average Score",
         text="Average Score",
         color="Average Score",
-        color_continuous_scale="Blues"
+        color_continuous_scale="Viridis"
     )
 
     fig.update_layout(height=400)
