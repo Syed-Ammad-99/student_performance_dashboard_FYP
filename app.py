@@ -90,9 +90,9 @@ def train_model(data):
     model = LogisticRegression()
     model.fit(X_train, y_train)
 
-    accuracy = accuracy_score(y_test, model.predict(X_test))
+    test_accuracy = accuracy_score(y_test, model.predict(X_test))
 
-    return model, scaler, features, accuracy
+    return model, scaler, features, test_accuracy
 
 model, scaler, feature_cols, model_accuracy = train_model(df)
 
